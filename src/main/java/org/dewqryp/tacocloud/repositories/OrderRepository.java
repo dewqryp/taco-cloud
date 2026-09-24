@@ -3,6 +3,8 @@ package org.dewqryp.tacocloud.repositories;
 import org.dewqryp.tacocloud.data.TacoOrder;
 import org.springframework.data.repository.CrudRepository;
 
-public interface OrderRepository extends CrudRepository<TacoOrder,String> {
+import java.util.UUID;
+
+public interface OrderRepository extends CrudRepository<TacoOrder, UUID> {
 
 }

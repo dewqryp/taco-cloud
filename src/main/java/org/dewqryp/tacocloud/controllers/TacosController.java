@@ -6,6 +6,7 @@ import org.dewqryp.tacocloud.data.Ingredient;
 import org.dewqryp.tacocloud.data.Ingredient.Type;
 import org.dewqryp.tacocloud.data.Taco;
 import org.dewqryp.tacocloud.data.TacoOrder;
+import org.dewqryp.tacocloud.data.TacoUDT;
 import org.dewqryp.tacocloud.repositories.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -63,7 +64,7 @@ public class TacosController {
         if(errors.hasErrors()){
             return "design";
         }
-        order.addTaco(taco);
+        order.addTaco(new TacoUDT(taco.getName(), taco.getIngredients()));
 
         log.info("Processing taco: {}", taco);
 
