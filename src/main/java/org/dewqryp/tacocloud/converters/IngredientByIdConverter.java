@@ -2,7 +2,7 @@ package org.dewqryp.tacocloud.converters;
 
 import org.dewqryp.tacocloud.data.Ingredient;
 
-import org.dewqryp.tacocloud.repositories.IngridientRepository;
+import org.dewqryp.tacocloud.repositories.IngredientRepository;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -12,10 +12,10 @@ import java.util.Map;
 @Component
 public class IngredientByIdConverter implements Converter<String, Ingredient> {
 
-    private final IngridientRepository ingridientRepository;
+    private final IngredientRepository ingridientRepository;
 
 
-    public IngredientByIdConverter(IngridientRepository ingridientRepository) {
+    public IngredientByIdConverter(IngredientRepository ingridientRepository) {
         this.ingridientRepository = ingridientRepository;
     }
 

@@ -1,10 +1,12 @@
 package org.dewqryp.tacocloud.data;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
+
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
+@Entity
 public class TacoOrder implements Serializable {
     @NotBlank(message = "Delivery name is required")
     private String deliveryName;
@@ -30,12 +33,15 @@ public class TacoOrder implements Serializable {
     @Digits(integer = 3, fraction = 0, message = "CVV must contain 3 digits")
     private String ccCVV;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private Date createdAt = new Date();
+    private Date createdAt;
 
     private static final long serialVersionUID = 1L;
 
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Taco> tacos = new ArrayList<>();
 
     public void addTaco(Taco taco){

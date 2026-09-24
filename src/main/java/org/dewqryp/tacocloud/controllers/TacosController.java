@@ -6,18 +6,14 @@ import org.dewqryp.tacocloud.data.Ingredient;
 import org.dewqryp.tacocloud.data.Ingredient.Type;
 import org.dewqryp.tacocloud.data.Taco;
 import org.dewqryp.tacocloud.data.TacoOrder;
-import org.dewqryp.tacocloud.repositories.IngridientRepository;
-import org.dewqryp.tacocloud.repositories.JDBCIngredientRepository;
+import org.dewqryp.tacocloud.repositories.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Controller
@@ -25,10 +21,10 @@ import java.util.stream.Collectors;
 @SessionAttributes("tacoOrder")
 public class TacosController {
 
-    private final IngridientRepository  ingridientRepository;
+    private final IngredientRepository  ingridientRepository;
 
     @Autowired
-    public TacosController(IngridientRepository ingridientRepository) {
+    public TacosController(IngredientRepository ingridientRepository) {
         this.ingridientRepository = ingridientRepository;
     }
 
