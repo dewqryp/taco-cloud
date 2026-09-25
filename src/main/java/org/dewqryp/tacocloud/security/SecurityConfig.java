@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.server.SecurityWebFilterChain;
 
 @Configuration
 public class SecurityConfig {
@@ -35,7 +34,9 @@ public class SecurityConfig {
         return http.authorizeHttpRequests(authorizeRequests -> authorizeRequests
                 .requestMatchers("/design", "/orders").hasRole("USER")
                 .requestMatchers("/", "/**").permitAll())
-                .formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/design").permitAll())
+                .formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/design", true).permitAll())
+                .oauth2Login(form -> form.loginPage("/login"))
+                .logout(logout -> logout.logoutUrl("/logout").permitAll())
                 .build();
     }
 }

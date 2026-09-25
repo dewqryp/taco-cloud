@@ -1,14 +1,58 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Taco Cloud</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
 </head>
 
 <body>
-<h1>Welcome to...</h1>
-<img th:src="@{/images/TacoCloud.png}"/>
 
-<a th:href="@{/design}" id="design">Design a taco</a>
+<header class="navbar">
+    <div class="navbar-content">
+        <a class="logo" th:href="@{/}">
+            <span class="logo-mark">🌮</span> Taco Cloud
+        </a>
+
+        <nav>
+            <a th:href="@{/design}">Design a taco</a>
+        </nav>
+    </div>
+</header>
+
+
+<section class="home-hero">
+    <div class="home-hero-text">
+        <p class="tagline">Made your way, one wrap at a time</p>
+
+        <h1>Welcome to Taco Cloud</h1>
+
+        <p class="hero-copy">
+            Pick your wrap, stack your fillings, and finish with sauce.
+            Every taco is built from scratch, exactly how you want it.
+        </p>
+
+        <a th:href="@{/design}" id="design" class="hero-cta">Design a taco</a>
+    </div>
+
+    <div class="home-hero-media">
+        <img th:src="@{/images/TacoCloud.png}" alt="Taco Cloud"/>
+    </div>
+</section>
+
+
+<footer>
+    <p>© Taco Cloud</p>
+</footer>
+
 </body>
 </html>
