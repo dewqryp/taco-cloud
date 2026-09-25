@@ -6,7 +6,6 @@ import org.dewqryp.tacocloud.data.Ingredient;
 import org.dewqryp.tacocloud.data.Ingredient.Type;
 import org.dewqryp.tacocloud.data.Taco;
 import org.dewqryp.tacocloud.data.TacoOrder;
-import org.dewqryp.tacocloud.data.TacoUDT;
 import org.dewqryp.tacocloud.repositories.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
