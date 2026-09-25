@@ -63,7 +63,7 @@ public class TacosController {
         if(errors.hasErrors()){
             return "design";
         }
-        order.addTaco(new TacoUDT(taco.getName(), taco.getIngredients()));
+        order.addTaco(taco);
 
         log.info("Processing taco: {}", taco);
 

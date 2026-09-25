@@ -45,15 +45,6 @@ public class TacoCloudApplication {
         };
     }
 
-    @Bean
-    public UserDetailsService userDetailsService(UserRepository userRepository) {
-        return username -> {
-            User user = userRepository.findByUsername(username);
-            if(user != null) {
-                return user;
-            }
-            throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
-        };
-    }
+
 
 }
