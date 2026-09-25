@@ -35,6 +35,7 @@ public class SecurityConfig {
         return http.authorizeHttpRequests(authorizeRequests -> authorizeRequests
                 .requestMatchers("/design", "/orders").hasRole("USER")
                 .requestMatchers("/", "/**").permitAll())
+                .formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/design").permitAll())
                 .build();
     }
 }
