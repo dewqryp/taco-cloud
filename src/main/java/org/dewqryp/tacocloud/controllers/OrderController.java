@@ -3,8 +3,10 @@ package org.dewqryp.tacocloud.controllers;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.dewqryp.tacocloud.data.TacoOrder;
+import org.dewqryp.tacocloud.data.User;
 import org.dewqryp.tacocloud.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,10 +37,11 @@ public class OrderController {
     }
 
     @PostMapping
-    public String  processOrder(@Valid TacoOrder tacoOrder, Errors errors, SessionStatus sessionStatus){
+    public String  processOrder(@Valid TacoOrder tacoOrder, Errors errors, SessionStatus sessionStatus, @AuthenticationPrincipal User user){
         if(errors.hasErrors()){
             return "orderForm";
         }
+        tacoOrder.setUser(user);
         orderRepository.save(tacoOrder);
         sessionStatus.setComplete();
         return "redirect:/";

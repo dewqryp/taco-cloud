@@ -19,12 +19,12 @@ import java.util.List;
 @Controller
 @RequestMapping("/design")
 @SessionAttributes("tacoOrder")
-public class TacosController {
+public class TacosDesignController {
 
     private final IngredientRepository  ingridientRepository;
 
     @Autowired
-    public TacosController(IngredientRepository ingridientRepository) {
+    public TacosDesignController(IngredientRepository ingridientRepository) {
         this.ingridientRepository = ingridientRepository;
     }
 
@@ -60,9 +60,19 @@ public class TacosController {
 
     @PostMapping
     public String processTaco(@Valid Taco taco, Errors errors, @ModelAttribute TacoOrder order){
-        if(errors.hasErrors()){
-            return "design";
-        }
+
+            if (errors.hasErrors()) {
+                errors.getFieldErrors().forEach(error ->
+                        log.info(
+                                "field={}, rejectedValue={}, message={}",
+                                error.getField(),
+                                error.getRejectedValue(),
+                                error.getDefaultMessage()
+                        )
+                );
+
+                return "design";
+            }
         order.addTaco(taco);
 
         log.info("Processing taco: {}", taco);

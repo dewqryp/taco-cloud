@@ -27,11 +27,11 @@ public class Taco {
 
     @NotNull
     @Size(min = 1, message = "You must choose at least 1 ingredient")
-    @ManyToMany(targetEntity = Ingredient.class)
+    @ManyToMany
     private List<Ingredient> ingredients;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private Date createdAt;
+    private Date createdAt =  new Date();
 }
