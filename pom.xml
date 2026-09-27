@@ -49,9 +49,8 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>org.springframework.security.experimental</groupId>
-            <artifactId>spring-security-oauth2-authorization-server</artifactId>
-            <version>0.1.2</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -62,6 +61,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webmvc-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-artemis</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

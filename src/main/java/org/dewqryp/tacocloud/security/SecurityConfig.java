@@ -4,6 +4,8 @@ import org.dewqryp.tacocloud.data.User;
 import org.dewqryp.tacocloud.repositories.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -35,10 +37,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityWebFilterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests(authorizeRequests -> authorizeRequests
+                        .requestMatchers(HttpMethod.POST, "/api/ingredients").hasAuthority("SCOPE_writeIngredients")
+                        .requestMatchers(HttpMethod.DELETE, "/api/ingredients/**").hasAuthority("SCOPE_deleteIngredients")
                 .requestMatchers("/design", "/orders").hasRole("USER")
                 .requestMatchers("/", "/**").permitAll())
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**"))
                 .formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/design", true).permitAll())
-                .oauth2Login(form -> form.loginPage("/login"))
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
                 .logout(logout -> logout.logoutUrl("/logout").permitAll())
                 .build();
     }

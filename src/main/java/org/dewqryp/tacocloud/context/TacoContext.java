@@ -1,10 +1,8 @@
 package org.dewqryp.tacocloud.context;
 
-import org.dewqryp.tacocloud.data.Ingredient;
-import org.dewqryp.tacocloud.repositories.IngredientRepository;
-import org.dewqryp.tacocloud.data.Ingredient.Type;
+import jakarta.jms.Destination;
+import org.apache.activemq.artemis.jms.client.ActiveMQQueue;
 
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -18,6 +16,7 @@ public class TacoContext implements WebMvcConfigurer {
       registry.addViewController("/").setViewName("home");
       registry.addViewController("/login");
   }
+
 
 
 }
