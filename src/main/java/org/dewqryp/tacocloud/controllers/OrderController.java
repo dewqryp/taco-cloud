@@ -4,7 +4,6 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.dewqryp.tacocloud.data.TacoOrder;
 import org.dewqryp.tacocloud.data.User;
-import org.dewqryp.tacocloud.messaging.OrderMessagingService;
 import org.dewqryp.tacocloud.repositories.OrderRepository;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -24,11 +23,10 @@ import java.util.Locale;
 public class OrderController {
 
     private OrderRepository orderRepository;
-    private OrderMessagingService orderMessagingService;
 
-    public OrderController(OrderRepository orderRepository, OrderMessagingService orderMessagingService) {
+
+    public OrderController(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
-        this.orderMessagingService = orderMessagingService;
     }
 
 
@@ -45,7 +43,6 @@ public class OrderController {
         }
         tacoOrder.setUser(user);
         orderRepository.save(tacoOrder);
-        orderMessagingService.sendOrder(tacoOrder);
         sessionStatus.setComplete();
         return "redirect:/";
     }
